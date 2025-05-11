@@ -1,5 +1,3 @@
-OtpService
-
 Это простой сервис, который генерит и проверяет одноразовые коды (OTP) для разных задач.
 
 Что тут есть
@@ -45,18 +43,18 @@ curl -X POST http://localhost:8080/api/auth/register \
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"bob","password":"1234"}'
-# Получишь { "token": "..." }
+Получаем { "token": "" }
 
 Генерация кода
 
-# email:
+email:
 curl "http://localhost:8080/api/otp/generate?operationId=OP1&via=email&target=bob@example.com" \
   -H "Authorization: Bearer <TOKEN>"
-# file (sms/emulator):
+  
+file (sms/emulator):
 curl "http://localhost:8080/api/otp/generate?operationId=OP2&via=file&target=sms.log" \
   -H "Authorization: Bearer <TOKEN>"
-
-Потом смотри MailHog или tail -f sms.log.
+тут смотрим MailHog или tail -f sms.log.
 
 Проверка кода
 
@@ -65,9 +63,9 @@ curl "http://localhost:8080/api/otp/validate?operationId=OP1&code=123456" \
 
 Тесты
 
-./mvnw test
+mvn test
 
-Прогонятся все юнит- и интеграционные тесты, включая проверку Telegram.
+Прогонятся все юнит и интеграционные тесты, включая проверку Telegram.
 
 Ну вот, больше ничего не надо.
 
